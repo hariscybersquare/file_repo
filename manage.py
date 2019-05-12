@@ -16,11 +16,13 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
-    thread1 = threading.Thread(target = scanfiles)
-    if(thread1.is_alive() is False):
-        thread1.start()
+    # The code should only when the server is started.
+    if(len(sys.argv) > 0):
+        if(sys.argv[1] == 'runserver'):
+            thread1 = threading.Thread(target=scanfiles)
+            if(thread1.is_alive() is False):
+                thread1.start()
     execute_from_command_line(sys.argv)
-
 
 
 if __name__ == '__main__':

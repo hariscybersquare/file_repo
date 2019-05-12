@@ -1,5 +1,6 @@
-import os 
+import os
 from datetime import datetime, timedelta
+
 
 class File():
     """
@@ -10,23 +11,23 @@ class File():
     def __init__(self, filename, filepath):
 
         filedetails = os.stat(filepath)
-        if(datetime.fromtimestamp(filedetails.st_mtime)<(datetime.now() - timedelta(hours = 1))):
-            self.filedetailsObj = {
-            'name': filename,
-            'filepath' : filepath.rsplit('/'+ filename, 1)[0],
-            'creationdatetime': datetime.fromtimestamp(filedetails.st_ctime),
-            'modificationdatetime':  datetime.fromtimestamp(filedetails.st_mtime),
-            'size': filedetails.st_size, 
-            'archived': False
-            }
-        elif(datetime.fromtimestamp(filedetails.st_mtime)<(datetime.now() - timedelta(days = 5))):
-            self.filedetailsObj = {
-            'name': filename,
-            'filepath' : filepath.rsplit('/'+ filename, 1)[0],
-            'creationdatetime': datetime.fromtimestamp(filedetails.st_ctime),
-            'modificationdatetime':  datetime.fromtimestamp(filedetails.st_mtime),
-            'size': filedetails.st_size, 
-            'archived': True
-            }
+        if(datetime.fromtimestamp(filedetails.st_mtime)
+                < (datetime.now() - timedelta(days=5))):
+            self.filedetailsObj =\
+                                (filename,
+                                 filepath.rsplit('/' + filename, 1)[0],
+                                 datetime.fromtimestamp(filedetails.st_ctime),
+                                 datetime.fromtimestamp(filedetails.st_mtime),
+                                 filedetails.st_size,
+                                 True)
+        elif(datetime.fromtimestamp(filedetails.st_mtime)
+                < (datetime.now() - timedelta(hours=1))):
+            self.filedetailsObj =\
+                                (filename,
+                                 filepath.rsplit('/' + filename, 1)[0],
+                                 datetime.fromtimestamp(filedetails.st_ctime),
+                                 datetime.fromtimestamp(filedetails.st_mtime),
+                                 filedetails.st_size,
+                                 False)
         else:
-            self.filedetailsObj = None 
+            self.filedetailsObj = None

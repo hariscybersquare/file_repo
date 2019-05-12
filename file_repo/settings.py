@@ -15,11 +15,17 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-#Folder path for the folder to be monitored for the new file arrivals. 
+# Folder path for the folder to be monitored for the new file arrivals.
 FOLDER_PATH = "/Users/muhammadharisnp/ProductDevelopment/filetest/textfiles"
 
-#Time interval for the job to monitor the folder. It is specified in seconds.
-TIME_INTERVAL = 10
+# Time interval for the job to monitor the folder. It is specified in seconds.
+TIME_INTERVAL = 1
+
+# The number of times you want the process to run.
+SCANNING_NUMBER = 1
+
+# Turn off or on authenticaion.
+AUTHENTICATION_ON = True
 
 
 # Quick-start development settings - unsuitable for production
@@ -43,6 +49,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'core',
+    'filesapp'
 ]
 
 MIDDLEWARE = [
@@ -84,12 +94,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'HOST': "127.0.0.1",
-        'NAME': "recipe_test",
+        'NAME': "file_repo_db",
         'USER': "haris",
         'PASSWORD': "12345",
     }
 }
-
 
 
 # Password validation
@@ -97,16 +106,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.\
+                         UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.\
+                                  MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.\
+                                  CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.\
+                                 NumericPasswordValidator',
     },
 ]
 
@@ -122,7 +135,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
