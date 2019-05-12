@@ -64,7 +64,9 @@ As soon as the Django starts running, a thread will continue to run to scan the 
                 thread1.start()
 
 ``` 
-in the manage.py takes care of this part. 
+in the manage.py takes care of this part and the file metadata information is stored to the table file_repo. The API http://127.0.0.1:8000/api/filesapp/True/ returns the archived files and http://127.0.0.1:8000/api/filesapp/False/ returns the unarchived files. 
+
+The business logic is that all the files which is more than 5 days will be in the status of archived.
 
 ## Thought process
 
