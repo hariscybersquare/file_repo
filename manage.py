@@ -2,7 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from scanfiles.uploadfilemetadata import scanfiles
+from scan_files.upload_file_metadata import scan_files
 import threading
 
 
@@ -19,7 +19,7 @@ def main():
     # The code should only when the server is started.
     if(len(sys.argv) > 0):
         if(sys.argv[1] == 'runserver'):
-            thread1 = threading.Thread(target=scanfiles)
+            thread1 = threading.Thread(target=scan_files)
             if(thread1.is_alive() is False):
                 thread1.start()
     execute_from_command_line(sys.argv)

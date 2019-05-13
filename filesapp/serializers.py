@@ -9,9 +9,11 @@ class RepoFilesSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = RepoFiles
-        fields = ('name',
-                  'filepath',
-                  'creationdatetime',
-                  'modificationdatetime',
+        fields = ('file_name',
+                  'file_path',
+                  'file_creation_date_time',
+                  'file_modification_date_time',
                   'size',
-                  'archived')
+                  'archived',
+                  'created_datetime',
+                  'updated_datetime')

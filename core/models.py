@@ -7,12 +7,14 @@ class RepoFiles(models.Model):
     """
     class Meta:
         db_table = 'file_repo'
-    name = models.CharField(max_length=255, primary_key=True)
-    filepath = models.CharField(max_length=255)
-    creationdatetime = models.DateTimeField()
-    modificationdatetime = models.DateTimeField()
-    size = models.IntegerField()
-    archived = models.BooleanField()
+    file_name = models.CharField(max_length=255, primary_key=True)
+    file_path = models.CharField(max_length=255)
+    file_creation_date_time = models.DateTimeField(null=False)
+    file_modification_date_time = models.DateTimeField(null=False)
+    size = models.IntegerField(null=False)
+    archived = models.BooleanField(null=False)
+    created_datetime = models.DateTimeField(null=False)
+    updated_datetime = models.DateTimeField(null=False)
 
     def __str__(self):
-        return self.name
+        return self.file_name
